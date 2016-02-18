@@ -5,7 +5,16 @@ package com.github.ignacy123.projectvocabulary.ui.validation;
  */
 public class ValidationResult {
     private boolean valid;
-    private String error;
+
+    public ValidationError getError() {
+        return error;
+    }
+
+    public void setError(ValidationError error) {
+        this.error = error;
+    }
+
+    private ValidationError error;
 
     public boolean isValid() {
         return valid;
@@ -15,11 +24,9 @@ public class ValidationResult {
         this.valid = valid;
     }
 
-    public String getError() {
-        return error;
-    }
 
-    public void setError(String error) {
-        this.error = error;
+    public String getMessage() {
+        return error.getMessage();
+
     }
 }

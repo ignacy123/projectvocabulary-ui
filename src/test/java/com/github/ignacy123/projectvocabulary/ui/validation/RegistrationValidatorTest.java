@@ -13,12 +13,15 @@ public class RegistrationValidatorTest {
     private RegistrationValidator registrationValidator;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         this.registrationValidator = new RegistrationValidator();
     }
+
     @Test
-    public void testValidateLogin(){
+    public void testValidateLogin() {
         ValidationResult result = registrationValidator.validateLogin("ed");
-        assertThat(result.isValid(),is(false));
+        assertThat(result.isValid(), is(false));
+
+
     }
 }

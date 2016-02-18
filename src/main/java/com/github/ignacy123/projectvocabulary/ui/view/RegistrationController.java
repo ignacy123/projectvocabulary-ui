@@ -2,6 +2,8 @@ package com.github.ignacy123.projectvocabulary.ui.view;
 
 import com.github.ignacy123.projectvocabulary.ui.domain.UserReopositoryMemory;
 import com.github.ignacy123.projectvocabulary.ui.domain.UserRepository;
+import com.github.ignacy123.projectvocabulary.ui.validation.RegistrationValidator;
+import com.github.ignacy123.projectvocabulary.ui.validation.ValidationResult;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -38,12 +40,23 @@ public class RegistrationController extends AbstractBaseController {
     }
 
     private boolean validateLogin() {
-        String login = loginField.getText();
-        if (login.length() < 3) {
-            loginError.setText("Login must be at least 3 characters long.");
-            return false;
-        }
-        return true;
-
+        RegistrationValidator registrationValidator = new RegistrationValidator();
+        ValidationResult validationResult = registrationValidator.validateLogin(loginField.getText());
+        loginError.setText(validationResult.getMessage());
+        return validationResult.isValid();
     }
+    private boolean validatePassword() {
+        RegistrationValidator registrationValidator = new RegistrationValidator();
+        ValidationResult validationResult = registrationValidator.validatePassword(passwordField.getText());
+        System.out.println(validationResult.getError());
+        return validationResult.isValid();
+    }
+    private boolean validateEmail() {
+        RegistrationValidator registrationValidator = new RegistrationValidator();
+        ValidationResult validationResult = registrationValidator.validateEmail(emailField.getText());
+        System.out.println(validationResult.getError());
+        return validationResult.isValid();
+    }
+
+
 }
