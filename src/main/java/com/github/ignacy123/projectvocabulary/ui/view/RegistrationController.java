@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
  * Created by ignacy on 03.02.16.
  */
 
-public class RegistrationController extends AbstractBaseController {
+public class RegistrationController extends AbstractUserRepositoryController {
     @FXML
     private TextField loginField;
     @FXML
@@ -31,30 +31,57 @@ public class RegistrationController extends AbstractBaseController {
     @FXML
     private Label passwordConfirmationError;
     private UserRepository userRepository = new UserReopositoryMemory();
+    private final RegistrationValidator registrationValidator = new RegistrationValidator();
+
     @FXML
     public void register() {
-        if (validateLogin()) {
+        clearErrors();
+        if (validate()) {
+
             main.switchToWindowScene();
         }
+    }
 
+    private boolean validate() {
+        boolean valid = true;
+        valid = validateLogin() && valid;
+        valid = validateEmail() && valid;
+        valid = validatePassword() && valid;
+
+        if(!passwordField.getText().equals(passwordConfirmationField.getText())){
+            passwordConfirmationError.setText("Passwords are not equal.");
+        }
+
+        return valid;
+    }
+
+    private void clearErrors() {
+        passwordError.setText("");
+        loginError.setText("");
+        emailError.setText("");
     }
 
     private boolean validateLogin() {
-        RegistrationValidator registrationValidator = new RegistrationValidator();
         ValidationResult validationResult = registrationValidator.validateLogin(loginField.getText());
-        loginError.setText(validationResult.getMessage());
+        if (!validationResult.isValid()) {
+            loginError.setText(validationResult.getMessage());
+        }
         return validationResult.isValid();
     }
+
     private boolean validatePassword() {
-        RegistrationValidator registrationValidator = new RegistrationValidator();
         ValidationResult validationResult = registrationValidator.validatePassword(passwordField.getText());
-        System.out.println(validationResult.getError());
+        if (!validationResult.isValid()) {
+            passwordError.setText(validationResult.getMessage());
+        }
         return validationResult.isValid();
     }
+
     private boolean validateEmail() {
-        RegistrationValidator registrationValidator = new RegistrationValidator();
         ValidationResult validationResult = registrationValidator.validateEmail(emailField.getText());
-        System.out.println(validationResult.getError());
+        if (!validationResult.isValid()) {
+            emailError.setText(validationResult.getMessage());
+        }
         return validationResult.isValid();
     }
 

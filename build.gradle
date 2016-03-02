@@ -6,6 +6,12 @@ apply from: 'javafx.plugin'
 
 sourceCompatibility = 1.8
 
+processResources {
+    from('src/main/java') {
+        include '**/*.fxml'
+    }
+}
+
 repositories {
     mavenCentral()
 }

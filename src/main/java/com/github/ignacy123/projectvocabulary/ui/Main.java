@@ -29,22 +29,6 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public void showWindow() {
-        // TODO Auto-generated method stub
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("com.github.ignacy123.projectvocabulary.ui/main.fxml"));
-        AnchorPane pane;
-        try {
-            pane = (AnchorPane) loader.load();
-            Scene scene = new Scene(pane, 600, 400);
-            WindowController controller = loader.getController();
-            controller.init(this);
-            primaryStage.setScene(scene);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
 
     public void home() {
         VBox root = createRootPane();
@@ -97,6 +81,9 @@ public class Main extends Application {
     }
     public void switchToWindowScene (){
         switchScene("view/Window.fxml");
+    }
+    public void switchToLoginScene (){
+        switchScene("view/Login.fxml");
     }
 
 }

@@ -1,10 +1,15 @@
 package com.github.ignacy123.projectvocabulary.ui.validation;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by ignacy on 11.02.16.
  */
 public class ValidationResult {
     private boolean valid;
+    private ValidationError error;
+    private Map<String, String> params = new HashMap<>();
 
     public ValidationError getError() {
         return error;
@@ -14,7 +19,6 @@ public class ValidationResult {
         this.error = error;
     }
 
-    private ValidationError error;
 
     public boolean isValid() {
         return valid;
@@ -26,7 +30,11 @@ public class ValidationResult {
 
 
     public String getMessage() {
-        return error.getMessage();
+        return error.getMessage(params);
 
+    }
+
+    public void addParam(String key, String value) {
+        params.put(key, value);
     }
 }

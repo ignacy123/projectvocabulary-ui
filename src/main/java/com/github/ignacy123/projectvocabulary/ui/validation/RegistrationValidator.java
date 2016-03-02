@@ -24,9 +24,8 @@ public class RegistrationValidator  {
         }
         if (login.length() <= 3) {
             validationResult.setValid(false);
-            Map<String, String > params = new HashMap<>();
-            params.put("minLength", "3");
             validationResult.setError(ValidationError.VALIDATION_MIN_LENGTH);
+            validationResult.addParam("minLength", "3");
             return validationResult;
         }
         if (login.length() >= 15) {
@@ -34,6 +33,7 @@ public class RegistrationValidator  {
             validationResult.setError(ValidationError.VALIDATION_MAX_LENGTH);
             return validationResult;
         }
+        validationResult.setValid(true);
         return validationResult;
     }
 
@@ -67,6 +67,7 @@ public class RegistrationValidator  {
             validationResult.setError(ValidationError.VALIDATION_MAX_LENGTH);
             return validationResult;
         }
+        validationResult.setValid(true);
         return validationResult;
     }
 }

@@ -43,5 +43,6 @@ public class WindowController extends AbstractBaseController {
     @FXML
     public void switchToRegistrationScene() {
         main.switchToRegistrationScene();
-    }
+    }    @FXML
+    public void switchToLoginScene() { main.switchToLoginScene(); }
 }
