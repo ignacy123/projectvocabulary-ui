@@ -1,7 +1,6 @@
 package com.github.ignacy123.projectvocabulary.ui.view;
 
-import com.github.ignacy123.projectvocabulary.ui.domain.UserReopositoryMemory;
-import com.github.ignacy123.projectvocabulary.ui.domain.UserRepository;
+import com.github.ignacy123.projectvocabulary.ui.domain.*;
 import com.github.ignacy123.projectvocabulary.ui.validation.RegistrationValidator;
 import com.github.ignacy123.projectvocabulary.ui.validation.ValidationResult;
 import javafx.fxml.FXML;
@@ -13,7 +12,7 @@ import javafx.scene.control.TextField;
  * Created by ignacy on 03.02.16.
  */
 
-public class RegistrationController extends AbstractUserRepositoryController {
+public class RegistrationController extends AbstractBaseController {
     @FXML
     private TextField loginField;
     @FXML
@@ -30,15 +29,29 @@ public class RegistrationController extends AbstractUserRepositoryController {
     private PasswordField passwordConfirmationField;
     @FXML
     private Label passwordConfirmationError;
-    private UserRepository userRepository = new UserReopositoryMemory();
+    private final UserRepository userRepository = UserRepository.getInstance();
     private final RegistrationValidator registrationValidator = new RegistrationValidator();
 
     @FXML
     public void register() {
         clearErrors();
         if (validate()) {
+            saveUser();
+        }
+    }
 
+    private void saveUser() {
+        try {
+            User user = new User();
+            user.setPassword(passwordField.getText());
+            user.setEmail(emailField.getText());
+            user.setLogin(loginField.getText());
+            userRepository.saveUser(user);
             main.switchToWindowScene();
+        } catch (UserEmailNotUniqueException e) {
+            emailError.setText("This email is already used.");
+        } catch (UserLoginNotUniqueException e) {
+            loginError.setText("This login is already used.");
         }
     }
 
@@ -48,7 +61,7 @@ public class RegistrationController extends AbstractUserRepositoryController {
         valid = validateEmail() && valid;
         valid = validatePassword() && valid;
 
-        if(!passwordField.getText().equals(passwordConfirmationField.getText())){
+        if (!passwordField.getText().equals(passwordConfirmationField.getText())) {
             passwordConfirmationError.setText("Passwords are not equal.");
         }
 

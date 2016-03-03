@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 /**
  * Created by ignacy on 02.03.16.
  */
-public class LoginController extends AbstractUserRepositoryController {
+public class LoginController extends AbstractBaseController {
     @FXML
     private TextField emailField;
     @FXML
