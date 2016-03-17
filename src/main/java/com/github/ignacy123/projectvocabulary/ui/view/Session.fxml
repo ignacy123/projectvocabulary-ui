@@ -6,10 +6,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.ignacy123.projectvocabulary.ui.view.SessionController">
    <children>
-      <Button layoutX="269.0" layoutY="200.0" mnemonicParsing="false" text="Check" />
-      <TextField layoutX="221.0" layoutY="97.0" />
+      <Button layoutX="269.0" layoutY="200.0" mnemonicParsing="false" onAction="#checkTranslation" text="Check" />
+      <TextField fx:id="translationField" layoutX="221.0" layoutY="97.0" />
       <Label layoutX="289.0" layoutY="135.0" />
-      <Button layoutX="273.0" layoutY="252.0" mnemonicParsing="false" text="Back" />
-      <Label layoutX="282.0" layoutY="51.0" />
+      <Button layoutX="275.0" layoutY="290.0" mnemonicParsing="false" text="Back" />
+      <Label fx:id="wordLabel" layoutX="282.0" layoutY="51.0" />
+      <Button layoutX="269.0" layoutY="238.0" mnemonicParsing="false" onAction="#giveUpCurrentTranslation" text="Give up" />
    </children>
 </AnchorPane>

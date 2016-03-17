@@ -1,5 +1,7 @@
 package com.github.ignacy123.projectvocabulary.ui;
 
+import com.github.ignacy123.projectvocabulary.ui.dictionary.DictionaryFactory;
+import com.github.ignacy123.projectvocabulary.ui.dictionary.MultiDictionary;
 import com.github.ignacy123.projectvocabulary.ui.domain.User;
 import com.github.ignacy123.projectvocabulary.ui.domain.UserRepository;
 import com.github.ignacy123.projectvocabulary.ui.view.BaseController;
@@ -16,14 +18,19 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by ignacy on 14.01.16.
  */
 public class Main extends Application {
     private Stage primaryStage;
-    public UserRepository userRepository;
     private User currentUser;
+    private MultiDictionary dictionary;
+
+    public MultiDictionary getDictionary() {
+        return dictionary;
+    }
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
@@ -31,6 +38,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        InputStream inputStream = Application.class.getResourceAsStream("/dictionary.c5");
+        dictionary = DictionaryFactory.createDictionaryFromC5InputStream(inputStream);
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Project vocabulary");
         switchToWindowScene();
