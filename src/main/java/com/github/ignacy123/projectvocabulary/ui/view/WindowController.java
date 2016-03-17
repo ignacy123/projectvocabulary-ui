@@ -1,6 +1,5 @@
 package com.github.ignacy123.projectvocabulary.ui.view;
 
-import com.github.ignacy123.projectvocabulary.ui.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -15,6 +14,7 @@ public class WindowController extends AbstractBaseController {
     private TextField lastNameField;
     @FXML
     private TextField ageField;
+
 
 
     public WindowController() {
@@ -37,7 +37,7 @@ public class WindowController extends AbstractBaseController {
 
     @FXML
     public void back() {
-        main.home();
+        main.logOut();
     }
 
     @FXML

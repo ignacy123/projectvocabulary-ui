@@ -1,5 +1,7 @@
 package com.github.ignacy123.projectvocabulary.ui;
 
+import com.github.ignacy123.projectvocabulary.ui.domain.User;
+import com.github.ignacy123.projectvocabulary.ui.domain.UserRepository;
 import com.github.ignacy123.projectvocabulary.ui.view.BaseController;
 import com.github.ignacy123.projectvocabulary.ui.view.RootController;
 import com.github.ignacy123.projectvocabulary.ui.view.WindowController;
@@ -20,6 +22,12 @@ import java.io.IOException;
  */
 public class Main extends Application {
     private Stage primaryStage;
+    public UserRepository userRepository;
+    private User currentUser;
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -30,30 +38,14 @@ public class Main extends Application {
     }
 
 
-    public void home() {
-        VBox root = createRootPane();
-        Scene scene = new Scene(root, 400, 400);
-        primaryStage.setScene(scene);
+    public void logOut() {
+        setCurrentUser(null);
+        switchToWindowScene();
     }
 
     public static void main(String[] args) {
         launch(args);
 
-    }
-    private VBox createRootPane() {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("com.github.ignacy123.projectvocabulary.ui/root.fxml"));
-        VBox root;
-        try {
-            root = (VBox) loader.load();
-            RootController controller = loader.getController();
-            controller.init(this);
-            return root;
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return null;
     }
 
     private void switchScene(String fxmlView){

@@ -11,6 +11,11 @@ public class UserRepositoryMemory implements UserRepository {
     private final Map<String, User> users = new HashMap<>();
 
     UserRepositoryMemory() {
+        User user = new User();
+        user.setLogin("janusz");
+        user.setPassword("1234567");
+        user.setEmail("janusz@example.com");
+        saveUser(user);
     }
 
 

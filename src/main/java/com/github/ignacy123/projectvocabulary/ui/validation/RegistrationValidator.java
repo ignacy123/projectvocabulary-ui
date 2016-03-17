@@ -31,6 +31,7 @@ public class RegistrationValidator  {
         if (login.length() >= 15) {
             validationResult.setValid(false);
             validationResult.setError(ValidationError.VALIDATION_MAX_LENGTH);
+            validationResult.addParam("maxLength", "15");
             return validationResult;
         }
         validationResult.setValid(true);
@@ -60,11 +61,13 @@ public class RegistrationValidator  {
         if (password.length() <= 6) {
             validationResult.setValid(false);
             validationResult.setError(ValidationError.VALIDATION_MIN_LENGTH);
+            validationResult.addParam("minLength", "6");
             return validationResult;
         }
         if (password.length() >= 15) {
             validationResult.setValid(false);
             validationResult.setError(ValidationError.VALIDATION_MAX_LENGTH);
+            validationResult.addParam("minLength", "15");
             return validationResult;
         }
         validationResult.setValid(true);

@@ -99,4 +99,8 @@ public class RegistrationController extends AbstractBaseController {
     }
 
 
+    @FXML
+    public void back() {
+        main.switchToWindowScene();
+    }
 }
