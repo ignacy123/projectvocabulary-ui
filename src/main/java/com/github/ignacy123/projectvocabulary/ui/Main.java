@@ -36,9 +36,11 @@ public class Main extends Application {
         this.currentUser = currentUser;
     }
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        InputStream inputStream = Application.class.getResourceAsStream("/dictionary.c5");
+
+        InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("dictionary.c5");
         dictionary = DictionaryFactory.createDictionaryFromC5InputStream(inputStream);
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Project vocabulary");
@@ -54,7 +56,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 
     private void switchScene(String fxmlView){

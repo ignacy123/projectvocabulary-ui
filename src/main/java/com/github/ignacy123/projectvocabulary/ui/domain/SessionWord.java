@@ -32,6 +32,11 @@ public class SessionWord {
     }
 
     public boolean matches(String translation) {
+        for (String currentTranslation : translations) {
+            if (translation.equals(currentTranslation)) {
+                return true;
+            }
+        }
         return false;
     }
 }
