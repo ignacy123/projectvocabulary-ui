@@ -8,10 +8,9 @@
    <children>
       <Button layoutX="269.0" layoutY="200.0" mnemonicParsing="false" onAction="#checkTranslation" text="Check" />
       <TextField fx:id="translationField" layoutX="221.0" layoutY="97.0" />
-      <Label layoutX="289.0" layoutY="135.0" />
       <Button fx:id="backButton" layoutX="275.0" layoutY="290.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <Label fx:id="wordLabel" layoutX="282.0" layoutY="51.0" />
       <Button layoutX="269.0" layoutY="238.0" mnemonicParsing="false" onAction="#giveUpCurrentTranslation" text="Give up" />
-      <Label fx:id="errorLabel" layoutX="280.0" layoutY="135.0" />
+      <Label fx:id="errorLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="253.0" layoutY="138.0" textAlignment="CENTER" textFill="#fc0505" />
    </children>
 </AnchorPane>

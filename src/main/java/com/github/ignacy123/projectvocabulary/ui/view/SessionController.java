@@ -3,12 +3,18 @@ package com.github.ignacy123.projectvocabulary.ui.view;
 import com.github.ignacy123.projectvocabulary.ui.Main;
 import com.github.ignacy123.projectvocabulary.ui.dictionary.MultiDictionary;
 import com.github.ignacy123.projectvocabulary.ui.domain.SessionWord;
+import com.github.ignacy123.projectvocabulary.ui.dto.SessionRequest;
+import com.github.ignacy123.projectvocabulary.ui.dto.SessionWordDto;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -48,14 +54,19 @@ public class SessionController extends AbstractBaseController {
     }
 
     private void prepareSessionWords() {
-        int size = dictionary.getSize();
-        for (int i = 0; i < 20; i++) {
-            int keyIndex = random.nextInt(size);
-            String word = dictionary.getWord(keyIndex);
-            List<String> translations = dictionary.getTranslations(keyIndex);
-            SessionWord sessionWord = new SessionWord(word, translations);
-            sessionWords.add(sessionWord);
-        }
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+        SessionRequest sessionRequest = new SessionRequest();
+        sessionRequest.setSize(20);
+
+        ResponseEntity<SessionWordDto[]> resultResponseEntity = restTemplate.postForEntity(
+                "http://localhost:8080/dictionary/session",
+                sessionRequest,
+                SessionWordDto[].class);
+        SessionWordDto[] body = resultResponseEntity.getBody();
+        sessionWords.addAll(SessionWordDto.convertToSessionWords(body));
+
     }
 
     @FXML
