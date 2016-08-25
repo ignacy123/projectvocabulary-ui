@@ -36,6 +36,9 @@ public class Main extends Application {
         this.currentUser = currentUser;
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -87,5 +90,9 @@ public class Main extends Application {
     public void switchToLoginScene (){
         switchScene("view/Login.fxml");
     }
+    public void switchToProfileEditingScene() {switchScene("view/ProfileEditing.fxml");}
 
+
+    public void switchToProfileScene() {switchScene("view/Profile.fxml");
+    }
 }

@@ -14,4 +14,8 @@ public class RootController extends AbstractBaseController{
     public void logOut() {
         main.logOut();
     }
+
+    public void showUserProfile(){
+        main.switchToProfileScene();
+    }
 }

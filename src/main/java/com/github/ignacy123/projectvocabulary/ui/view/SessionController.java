@@ -5,6 +5,7 @@ import com.github.ignacy123.projectvocabulary.ui.dictionary.MultiDictionary;
 import com.github.ignacy123.projectvocabulary.ui.domain.SessionWord;
 import com.github.ignacy123.projectvocabulary.ui.dto.SessionRequest;
 import com.github.ignacy123.projectvocabulary.ui.dto.SessionWordDto;
+import com.github.ignacy123.projectvocabulary.ui.restapi.SessionRestApi;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,6 +34,7 @@ public class SessionController extends AbstractBaseController {
 
     private MultiDictionary dictionary;
     private List<SessionWord> sessionWords = new ArrayList<>();
+    SessionRestApi restApi = new SessionRestApi();
     private Random random = new Random(System.currentTimeMillis());
     private int sessionWordIndex = 0;
 
@@ -45,7 +47,7 @@ public class SessionController extends AbstractBaseController {
     public void init(Main main) {
         super.init(main);
         dictionary = main.getDictionary();
-        prepareSessionWords();
+        restApi.prepareWord(main.getCurrentUser(), sessionWords, 20);
         showCurrentWord();
     }
 
@@ -53,21 +55,21 @@ public class SessionController extends AbstractBaseController {
         wordLabel.setText(sessionWords.get(sessionWordIndex).getWord());
     }
 
-    private void prepareSessionWords() {
+//    private void prepareSessionWords() {
+//
+//        RestTemplate restTemplate = new RestTemplate();
+//        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+//        SessionRequest sessionRequest = new SessionRequest();
+//        sessionRequest.setSize(20);
+//
+//        ResponseEntity<SessionWordDto[]> resultResponseEntity = restTemplate.postForEntity(
+//                "http://localhost:8080/dictionary/session",
+//                sessionRequest,
+//                SessionWordDto[].class);
+//        SessionWordDto[] body = resultResponseEntity.getBody();
+//        sessionWords.addAll(SessionWordDto.convertToSessionWords(body));
 
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-        SessionRequest sessionRequest = new SessionRequest();
-        sessionRequest.setSize(20);
-
-        ResponseEntity<SessionWordDto[]> resultResponseEntity = restTemplate.postForEntity(
-                "http://localhost:8080/dictionary/session",
-                sessionRequest,
-                SessionWordDto[].class);
-        SessionWordDto[] body = resultResponseEntity.getBody();
-        sessionWords.addAll(SessionWordDto.convertToSessionWords(body));
-
-    }
+//    }
 
     @FXML
     public void checkTranslation() {

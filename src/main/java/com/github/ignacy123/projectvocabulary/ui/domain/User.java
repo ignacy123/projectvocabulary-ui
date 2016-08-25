@@ -12,10 +12,23 @@ import java.util.Objects;
  */
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
+    public enum Type{
+        STUDENT, TEACHER;
+    }
+
+    private Long id;
     private String login;
     private String password;
     private String email;
+    private String cookie;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -45,7 +58,13 @@ public class User implements Serializable {
         return computeHash(anotherPassword).equals(password);
     }
 
+    public String getCookie() {
+        return cookie;
+    }
 
+    public void setCookie(String cookie) {
+        this.cookie = cookie;
+    }
 
     public static String computeHash(String str) {
         String sha1 = "";

@@ -1,12 +1,16 @@
 package com.github.ignacy123.projectvocabulary.ui.view;
 
 import com.github.ignacy123.projectvocabulary.ui.domain.*;
+import com.github.ignacy123.projectvocabulary.ui.restapi.ErrorDto;
+import com.github.ignacy123.projectvocabulary.ui.restapi.RegistrationDto;
+import com.github.ignacy123.projectvocabulary.ui.restapi.RestValidationException;
+import com.github.ignacy123.projectvocabulary.ui.restapi.UserRestApi;
 import com.github.ignacy123.projectvocabulary.ui.validation.RegistrationValidator;
 import com.github.ignacy123.projectvocabulary.ui.validation.ValidationResult;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import java.util.Map;
 
 /**
  * Created by ignacy on 03.02.16.
@@ -29,30 +33,63 @@ public class RegistrationController extends AbstractBaseController {
     private PasswordField passwordConfirmationField;
     @FXML
     private Label passwordConfirmationError;
-    private final UserRepository userRepository = UserRepository.getInstance();
+    @FXML
+    private RadioButton studentRadio;
+    @FXML
+    private RadioButton teacherRadio;
+    @FXML
+    private ToggleGroup userTypeGroup;
+    private final UserRestApi userRestApi = UserRestApi.INSTANCE;
     private final RegistrationValidator registrationValidator = new RegistrationValidator();
 
     @FXML
     public void register() {
         clearErrors();
-        if (validate()) {
-            saveUser();
-        }
+//        if (validate()) {
+        saveUser();
+//        }
     }
 
     private void saveUser() {
         try {
-            User user = new User();
+            RegistrationDto user = new RegistrationDto();
             user.setPassword(passwordField.getText());
             user.setEmail(emailField.getText());
             user.setLogin(loginField.getText());
-            userRepository.saveUser(user);
+            if (userTypeGroup.getSelectedToggle() == studentRadio) {
+                user.setType(User.Type.STUDENT);
+            } else {
+                user.setType(User.Type.TEACHER);
+            }
+            System.out.println(user);
+            userRestApi.register(user);
             main.switchToWindowScene();
+        } catch (RestValidationException e) {
+            ErrorDto errorDto = e.getErrorDto();
+            displayValidationErrors(errorDto);
         } catch (UserEmailNotUniqueException e) {
             emailError.setText("This email is already used.");
         } catch (UserLoginNotUniqueException e) {
             loginError.setText("This login is already used.");
         }
+    }
+
+    private void displayValidationErrors(ErrorDto errorDto) {
+        clearErrors();
+        for (Map.Entry<String, String> entry : errorDto.getErrors().entrySet()) {
+            switch (entry.getKey()) {
+                case "email":
+                    emailError.setText(entry.getValue());
+                    break;
+                case "login":
+                    loginError.setText(entry.getValue());
+                    break;
+                case "password":
+                    passwordError.setText(entry.getValue());
+                    break;
+            }
+        }
+
     }
 
     private boolean validate() {
