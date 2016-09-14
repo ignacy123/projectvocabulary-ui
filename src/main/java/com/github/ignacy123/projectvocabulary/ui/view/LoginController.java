@@ -40,9 +40,12 @@ public class LoginController extends AbstractBaseController {
             dto.setPassword(password);
             UserDto user = restApi.logIn(dto);
             User loggingUser = new User();
+            loggingUser.setFirstName(user.getFirstName());
+            loggingUser.setLastName(user.getLastName());
             loggingUser.setId(user.getId());
             loggingUser.setEmail(user.getEmail());
             loggingUser.setCookie(user.getCookie());
+            loggingUser.setType(user.getType());
             main.setCurrentUser(loggingUser);
             main.switchToRootScene();
         } catch (RestValidationException e) {

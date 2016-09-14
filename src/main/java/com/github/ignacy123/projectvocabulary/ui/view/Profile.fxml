@@ -6,11 +6,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.ignacy123.projectvocabulary.ui.view.ProfileController">
    <children>
-      <Label layoutX="237.0" layoutY="75.0" text="Your email address:" />
-      <Label fx:id="email" layoutX="282.0" layoutY="114.0" />
-      <Label layoutX="269.0" layoutY="153.0" text="Your login:" />
-      <Label fx:id="login" layoutX="282.0" layoutY="192.0" />
+      <Label layoutX="234.0" layoutY="60.0" text="Your email address:" />
+      <Label fx:id="email" layoutX="275.0" layoutY="97.0" />
+      <Label layoutX="244.0" layoutY="126.0" text="Your first name:" />
+      <Label fx:id="firstName" layoutX="272.0" layoutY="155.0" />
       <Button layoutX="276.0" layoutY="237.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <Button layoutX="259.0" layoutY="295.0" mnemonicParsing="false" onAction="#edit" text="Edit profile" />
+      <Label layoutX="249.0" layoutY="184.0" text="Your last name:" />
+      <Label fx:id="lastName" layoutX="283.0" layoutY="209.0" />
    </children>
 </AnchorPane>

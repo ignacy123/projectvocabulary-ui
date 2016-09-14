@@ -1,6 +1,7 @@
 package com.github.ignacy123.projectvocabulary.ui.restapi;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.ignacy123.projectvocabulary.ui.domain.User;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
@@ -9,9 +10,11 @@ import javax.xml.bind.annotation.XmlAttribute;
  */
 public class UserDto {
     private Long id;
-    private String login;
+    private String firstName;
+    private String lastName;
     private String email;
     private String cookie;
+    private User.Type type;
 
     public Long getId() {
         return id;
@@ -21,12 +24,20 @@ public class UserDto {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -43,5 +54,13 @@ public class UserDto {
 
     public void setCookie(String cookie) {
         this.cookie = cookie;
+    }
+
+    public User.Type getType() {
+        return type;
+    }
+
+    public void setType(User.Type type) {
+        this.type = type;
     }
 }

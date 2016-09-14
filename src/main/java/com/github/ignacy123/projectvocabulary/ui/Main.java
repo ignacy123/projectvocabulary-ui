@@ -3,18 +3,11 @@ package com.github.ignacy123.projectvocabulary.ui;
 import com.github.ignacy123.projectvocabulary.ui.dictionary.DictionaryFactory;
 import com.github.ignacy123.projectvocabulary.ui.dictionary.MultiDictionary;
 import com.github.ignacy123.projectvocabulary.ui.domain.User;
-import com.github.ignacy123.projectvocabulary.ui.domain.UserRepository;
 import com.github.ignacy123.projectvocabulary.ui.view.BaseController;
-import com.github.ignacy123.projectvocabulary.ui.view.RootController;
-import com.github.ignacy123.projectvocabulary.ui.view.WindowController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -43,7 +36,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("dictionary.c5");
+        InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("classpath:dictionary.c5");
         dictionary = DictionaryFactory.createDictionaryFromC5InputStream(inputStream);
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Project vocabulary");
@@ -79,8 +72,13 @@ public class Main extends Application {
         switchScene("view/Registration.fxml");
     }
     public void switchToRootScene (){
-        switchScene("view/Root.fxml");
+        if(currentUser.getType() == User.Type.STUDENT) {
+            switchScene("view/RootStudent.fxml");
+        }else{
+            switchScene("view/RootTeacher.fxml");
+        }
     }
+
     public void switchToSessionScene (){
         switchScene("view/Session.fxml");
     }
@@ -94,5 +92,9 @@ public class Main extends Application {
 
 
     public void switchToProfileScene() {switchScene("view/Profile.fxml");
+    }
+
+    public void switchToGroupsScene() {
+        switchScene("view/GroupTest.fxml");
     }
 }

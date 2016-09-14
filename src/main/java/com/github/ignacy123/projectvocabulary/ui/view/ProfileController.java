@@ -13,14 +13,18 @@ public class ProfileController extends AbstractBaseController{
     private Label email;
 
     @FXML
-    private Label login;
+    private Label firstName;
+
+    @FXML
+    private Label lastName;
 
     @Override
     public void init(Main main) {
         super.init(main);
         User user = main.getCurrentUser();
         email.setText(user.getEmail());
-        login.setText(user.getLogin());
+        firstName.setText(user.getFirstName());
+        lastName.setText(user.getLastName());
     }
 
     public void back(){

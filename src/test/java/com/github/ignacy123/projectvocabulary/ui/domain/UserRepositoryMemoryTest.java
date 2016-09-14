@@ -21,12 +21,14 @@ public class UserRepositoryMemoryTest {
     @Test
     public void testSaveUser() throws Exception {
         User user = new User();
-        user.setLogin("test123");
+        user.setFirstName("test123");
+        user.setLastName("abcabc");
         user.setEmail("abc@gmail.com");
         user.setPassword("test123");
         userRepository.saveUser(user);
-        User createdUser = userRepository.findUserByLogin("test123");
-        assertThat(createdUser.getLogin(), is(user.getLogin()));
+        User createdUser = userRepository.findUserByEmail("abc@gmail.com");
+        assertThat(createdUser.getFirstName(), is(user.getFirstName()));
+        assertThat(createdUser.getLastName(), is(user.getLastName()));
         assertThat(createdUser.getEmail(), is(user.getEmail()));
         assertThat(createdUser.getPassword(), is(user.getPassword()));
     }
@@ -34,27 +36,13 @@ public class UserRepositoryMemoryTest {
     @Test(expected = UserEmailNotUniqueException.class)
     public void testSaveUserThrowsExceptionForNonUniqueEmail() throws Exception {
         User user = new User();
-        user.setLogin("test123");
+        user.setFirstName("test123");
         user.setEmail("abc@gmail.com");
         user.setPassword("test123");
         userRepository.saveUser(user);
         user = new User();
-        user.setLogin("nottest");
+        user.setFirstName("nottest");
         user.setEmail("abc@gmail.com");
-        user.setPassword("test123");
-        userRepository.saveUser(user);
-    }
-
-    @Test(expected = UserLoginNotUniqueException.class)
-    public void testSaveUserThrowsExceptionForNonUniqueLogin() throws Exception {
-        User user = new User();
-        user.setLogin("test123");
-        user.setEmail("abc@gmail.com");
-        user.setPassword("test123");
-        userRepository.saveUser(user);
-        user = new User();
-        user.setLogin("test123");
-        user.setEmail("differentEmail");
         user.setPassword("test123");
         userRepository.saveUser(user);
     }

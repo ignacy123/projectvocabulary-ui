@@ -18,9 +18,9 @@ import java.util.Map;
 
 public class RegistrationController extends AbstractBaseController {
     @FXML
-    private TextField loginField;
+    private TextField firstNameField;
     @FXML
-    private Label loginError;
+    private TextField lastNameField;
     @FXML
     private TextField emailField;
     @FXML
@@ -55,7 +55,8 @@ public class RegistrationController extends AbstractBaseController {
             RegistrationDto user = new RegistrationDto();
             user.setPassword(passwordField.getText());
             user.setEmail(emailField.getText());
-            user.setLogin(loginField.getText());
+            user.setFirstName(firstNameField.getText());
+            user.setLastName(lastNameField.getText());
             if (userTypeGroup.getSelectedToggle() == studentRadio) {
                 user.setType(User.Type.STUDENT);
             } else {
@@ -69,8 +70,6 @@ public class RegistrationController extends AbstractBaseController {
             displayValidationErrors(errorDto);
         } catch (UserEmailNotUniqueException e) {
             emailError.setText("This email is already used.");
-        } catch (UserLoginNotUniqueException e) {
-            loginError.setText("This login is already used.");
         }
     }
 
@@ -80,9 +79,6 @@ public class RegistrationController extends AbstractBaseController {
             switch (entry.getKey()) {
                 case "email":
                     emailError.setText(entry.getValue());
-                    break;
-                case "login":
-                    loginError.setText(entry.getValue());
                     break;
                 case "password":
                     passwordError.setText(entry.getValue());
@@ -94,7 +90,6 @@ public class RegistrationController extends AbstractBaseController {
 
     private boolean validate() {
         boolean valid = true;
-        valid = validateLogin() && valid;
         valid = validateEmail() && valid;
         valid = validatePassword() && valid;
 
@@ -107,16 +102,7 @@ public class RegistrationController extends AbstractBaseController {
 
     private void clearErrors() {
         passwordError.setText("");
-        loginError.setText("");
         emailError.setText("");
-    }
-
-    private boolean validateLogin() {
-        ValidationResult validationResult = registrationValidator.validateLogin(loginField.getText());
-        if (!validationResult.isValid()) {
-            loginError.setText(validationResult.getMessage());
-        }
-        return validationResult.isValid();
     }
 
     private boolean validatePassword() {

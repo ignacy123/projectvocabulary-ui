@@ -12,5 +12,5 @@ public interface UserRepository {
         return INSTANCE;
     }
 
-    User findUserByLogin(String login);
+    User findUserByEmail(String email);
 }

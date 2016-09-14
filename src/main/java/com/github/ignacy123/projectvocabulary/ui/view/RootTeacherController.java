@@ -5,10 +5,10 @@ import javafx.fxml.FXML;
 /**
  * Created by ignacy on 20.01.16.
  */
-public class RootController extends AbstractBaseController{
+public class RootTeacherController extends AbstractBaseController{
     @FXML
-    public void startSession(){
-        main.switchToSessionScene();
+    public void showGroups(){
+        main.switchToGroupsScene();
     }
     @FXML
     public void logOut() {

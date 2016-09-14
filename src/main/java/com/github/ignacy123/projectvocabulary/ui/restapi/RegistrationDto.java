@@ -6,7 +6,9 @@ import com.github.ignacy123.projectvocabulary.ui.domain.User;
  * Created by ignacy on 19.05.16.
  */
 public class RegistrationDto {
-    private String login;
+    private String firstName;
+
+    private String lastName;
 
     private String password;
 
@@ -14,12 +16,17 @@ public class RegistrationDto {
 
     private User.Type type;
 
-    public String getLogin() {
-        return login;
+    public String getFirstName() { return firstName; }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName; }
+
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -49,7 +56,8 @@ public class RegistrationDto {
     @Override
     public String toString() {
         return "RegistrationDto{" +
-                "login='" + login + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", type=" + type +

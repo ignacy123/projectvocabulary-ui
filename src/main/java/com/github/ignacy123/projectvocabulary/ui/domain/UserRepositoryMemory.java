@@ -12,7 +12,8 @@ public class UserRepositoryMemory implements UserRepository {
 
     UserRepositoryMemory() {
         User user = new User();
-        user.setLogin("janusz");
+        user.setFirstName("Janusz");
+        user.setLastName("Kowalki");
         user.setPassword("1234567");
         user.setEmail("janusz@example.com");
         saveUser(user);
@@ -21,20 +22,15 @@ public class UserRepositoryMemory implements UserRepository {
 
     @Override
     public User saveUser(User user) {
-        if (users.get(user.getLogin()) != null) {
-            throw new UserLoginNotUniqueException();
-        }
         for (User iteratedUser : users.values()) {
             if (iteratedUser.getEmail().equals(user.getEmail())) {
                 throw new UserEmailNotUniqueException();
             }
         }
-        users.put(user.getLogin(), user);
+        users.put(user.getEmail(), user);
         return user;
     }
-
-    @Override
-    public User findUserByLogin(String login) {
-        return users.get(login);
+    public User findUserByEmail(String email) {
+        return users.get(email);
     }
 }

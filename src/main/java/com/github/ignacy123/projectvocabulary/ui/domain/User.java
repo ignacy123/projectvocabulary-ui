@@ -17,10 +17,12 @@ public class User implements Serializable {
     }
 
     private Long id;
-    private String login;
+    private String firstName;
+    private String lastName;
     private String password;
     private String email;
     private String cookie;
+    private Type type;
 
     public Long getId() {
         return id;
@@ -38,12 +40,22 @@ public class User implements Serializable {
         return email;
     }
 
-    public String getLogin() {
-        return login;
+    public String getFirstName() { return firstName; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public String getPassword() {
