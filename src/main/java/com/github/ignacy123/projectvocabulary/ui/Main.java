@@ -36,7 +36,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("classpath:dictionary.c5");
+        InputStream inputStream = getClass().getResourceAsStream("dictionary.c5");
         dictionary = DictionaryFactory.createDictionaryFromC5InputStream(inputStream);
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Project vocabulary");
