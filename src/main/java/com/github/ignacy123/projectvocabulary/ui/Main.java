@@ -2,6 +2,7 @@ package com.github.ignacy123.projectvocabulary.ui;
 
 import com.github.ignacy123.projectvocabulary.ui.dictionary.DictionaryFactory;
 import com.github.ignacy123.projectvocabulary.ui.dictionary.MultiDictionary;
+import com.github.ignacy123.projectvocabulary.ui.domain.Group;
 import com.github.ignacy123.projectvocabulary.ui.domain.User;
 import com.github.ignacy123.projectvocabulary.ui.view.BaseController;
 import javafx.application.Application;
@@ -19,6 +20,7 @@ import java.io.InputStream;
 public class Main extends Application {
     private Stage primaryStage;
     private User currentUser;
+    private Group currentGroup;
     private MultiDictionary dictionary;
 
     public MultiDictionary getDictionary() {
@@ -96,5 +98,18 @@ public class Main extends Application {
 
     public void switchToGroupsScene() {
         switchScene("view/GroupTest.fxml");
+    }
+
+    public void switchToGroupInfoScene(Group group){
+        currentGroup = group;
+        switchScene("view/GroupInfo.fxml");
+    }
+
+    public Group getCurrentGroup() {
+        return currentGroup;
+    }
+
+    public void setCurrentGroup(Group currentGroup) {
+        this.currentGroup = currentGroup;
     }
 }

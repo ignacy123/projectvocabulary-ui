@@ -8,6 +8,8 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by ignacy on 13.09.16.
@@ -21,5 +23,10 @@ public class GroupRestApi extends AbstractRestApi {
 
     public Group create(GroupDto groupDto) {
         return post("/groups", groupDto, Group.class).getBody();
+    }
+
+    public List<Group> getTeacherGroups(Long teacherId, String cookie) {
+        ResponseEntity<Group[]> groupsResponse = getWithCookie("/groups?teacherId=" + teacherId, Group[].class, cookie);
+        return Arrays.asList(groupsResponse.getBody());
     }
 }

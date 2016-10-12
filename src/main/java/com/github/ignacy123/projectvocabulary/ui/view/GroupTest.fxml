@@ -6,7 +6,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.ignacy123.projectvocabulary.ui.view.GroupTestController">
    <children>
-      <ListView fx:id="groupsView" layoutX="200.0" layoutY="100.0" onMouseClicked="#showGroup" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="groupsView" layoutX="203.0" layoutY="62.0" onMouseClicked="#showGroup" prefHeight="200.0" prefWidth="200.0" />
       <Button layoutX="241.0" layoutY="328.0" mnemonicParsing="false" onAction="#addNewGroup" text="Add new group" />
+      <Button layoutX="269.0" layoutY="275.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </AnchorPane>

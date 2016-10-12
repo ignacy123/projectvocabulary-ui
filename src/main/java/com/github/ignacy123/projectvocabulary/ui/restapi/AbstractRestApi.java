@@ -72,4 +72,23 @@ public abstract class AbstractRestApi {
 
     }
 
+    protected  <T> ResponseEntity<T> getWithCookie(String url, Class<T> returnClass, String cookie) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Cookie", cookie);
+            HttpEntity<Object> httpEntity = new HttpEntity<>(headers);
+            ResponseEntity<T> responseEntity = restTemplate.exchange("http://localhost:8080/projectvocabulary"+url, HttpMethod.GET, httpEntity, returnClass);
+            return responseEntity;
+        } catch (HttpClientErrorException e) {
+            String errorJson = e.getResponseBodyAsString();
+            try {
+                ErrorDto errorDto = mapper.readValue(errorJson, ErrorDto.class);
+                throw new RestValidationException(errorDto);
+            } catch (IOException e1) {
+                throw new RuntimeException(e1);
+            }
+        }
+
+    }
+
 }
