@@ -91,8 +91,7 @@ public class Main extends Application {
         switchScene("view/Login.fxml");
     }
     public void switchToProfileEditingScene() {switchScene("view/ProfileEditing.fxml");}
-
-
+    public void switchToInvitationScene(){switchScene("view/InvitationScene.fxml");}
     public void switchToProfileScene() {switchScene("view/Profile.fxml");
     }
 

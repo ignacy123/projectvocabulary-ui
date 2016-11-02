@@ -58,7 +58,7 @@ public abstract class AbstractRestApi {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Cookie", cookie);
             HttpEntity<Object> httpEntity = new HttpEntity<>(object, headers);
-            ResponseEntity<T> responseEntity = restTemplate.exchange(url, method, httpEntity, returnClass);
+            ResponseEntity<T> responseEntity = restTemplate.exchange("http://localhost:8080/projectvocabulary"+url, method, httpEntity, returnClass);
             return responseEntity;
         } catch (HttpClientErrorException e) {
             String errorJson = e.getResponseBodyAsString();

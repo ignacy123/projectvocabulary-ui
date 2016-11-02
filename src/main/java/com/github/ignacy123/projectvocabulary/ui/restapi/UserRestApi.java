@@ -40,7 +40,7 @@ public class UserRestApi extends AbstractRestApi {
     }
 
     public UserDto update(UserUpdateDto userUpdateDto, User currentUser) {
-        String url = String.format("http://localhost:8080/projectvocabulary/users/%d", currentUser.getId());
+        String url = String.format("/users/%d", currentUser.getId());
         return putWithCookie(url, userUpdateDto, UserDto.class, currentUser.getCookie()).getBody();
     }
 

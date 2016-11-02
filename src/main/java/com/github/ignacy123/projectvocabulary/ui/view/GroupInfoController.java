@@ -36,4 +36,5 @@ public class GroupInfoController extends AbstractBaseController {
     public void back() {
         main.switchToGroupsScene();
     }
+    public void invite() {main.switchToInvitationScene();}
 }

@@ -13,5 +13,6 @@
       <Label fx:id="amountOfStudents" layoutX="122.0" layoutY="259.0" />
       <Button layoutX="261.0" layoutY="317.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <ListView fx:id="shownStudents" layoutX="307.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="238.0" layoutY="275.0" mnemonicParsing="false" onAction="#invite" text="Invite student" />
    </children>
 </AnchorPane>
