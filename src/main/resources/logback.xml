@@ -8,7 +8,9 @@
         </encoder>
     </appender>
 
-    <logger name="httpclient.wire" level="debug"/>
+    <!--<logger name="httpclient.wire" level="debug"/>-->
+    <logger name="com.github.ignacy123.projectvocabulary.ui" level="debug"/>
+
     <root level="debug">
         <appender-ref ref="STDOUT" />
     </root>
