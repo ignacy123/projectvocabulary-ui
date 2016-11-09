@@ -18,4 +18,6 @@ public class RootStudentController extends AbstractBaseController{
     public void showUserProfile(){
         main.switchToProfileScene();
     }
+
+    public void switchToInvitationAcceptanceScene(){main.switchToInvitationAcceptanceScene();}
 }

@@ -98,6 +98,7 @@ public class Main extends Application {
     public void switchToGroupsScene() {
         switchScene("view/GroupTest.fxml");
     }
+    public void switchToInvitationAcceptanceScene() {switchScene("view/InvitationAcceptance.fxml");}
 
     public void switchToGroupInfoScene(Group group){
         currentGroup = group;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.ignacy123.projectvocabulary.ui.view.InvitationAcceptanceController">
+   <children>
+      <TextField fx:id="uid" layoutX="215.0" layoutY="109.0" prefHeight="26.0" prefWidth="189.0" />
+      <Button layoutX="258.0" layoutY="219.0" mnemonicParsing="false" onAction="#joinGroup" text="Join group" />
+      <Label layoutX="225.0" layoutY="69.0" text="Paste your invitation here:" />
+      <Button layoutX="269.0" layoutY="174.0" mnemonicParsing="false" onAction="#back" text="Back" />
+   </children>
+</AnchorPane>
