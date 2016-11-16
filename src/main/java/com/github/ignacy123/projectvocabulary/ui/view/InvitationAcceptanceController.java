@@ -17,7 +17,7 @@ public class InvitationAcceptanceController extends AbstractBaseController{
     public void joinGroup(){
         InvitationAcceptanceDto dto = new InvitationAcceptanceDto();
         dto.setInvitationUid(uid.getText());
-//        dto.setStudentId(main.getCurrentUser().getId());
+        dto.setStudentId(main.getCurrentUser().getId());
         String cookie = main.getCurrentUser().getCookie();
         api.acceptInvitation(dto, cookie);
     }

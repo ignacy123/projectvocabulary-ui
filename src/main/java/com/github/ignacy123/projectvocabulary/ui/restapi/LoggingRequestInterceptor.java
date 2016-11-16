@@ -34,7 +34,14 @@ public class LoggingRequestInterceptor implements ClientHttpRequestInterceptor {
 	}
 
 	private void traceResponse(ClientHttpResponse response) throws IOException {
-		byte[] responseBytes = StreamUtils.copyToByteArray(response.getBody());
+
+		byte[] responseBytes;
+		try {
+			responseBytes = StreamUtils.copyToByteArray(response.getBody());
+		}catch(IOException e){
+			LOGGER.error("couldnt intercept request", e);
+			return;
+		}
 
 		LOGGER.debug("============================response begin==========================================");
 		LOGGER.debug("Status text  : {}", response.getStatusText());

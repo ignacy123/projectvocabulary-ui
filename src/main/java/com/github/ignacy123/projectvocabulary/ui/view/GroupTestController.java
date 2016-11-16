@@ -42,10 +42,12 @@ public class GroupTestController extends AbstractBaseController {
         Group group = groups.get(groupsView.getSelectionModel().getSelectedIndex());
         main.switchToGroupInfoScene(group);
     }
-
+    @FXML
     public void addNewGroup() {
+        main.switchToAddGroupScene();
     }
 
+    @FXML
     public void back() {
         main.switchToRootScene();
     }

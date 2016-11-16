@@ -21,8 +21,9 @@ public class GroupRestApi extends AbstractRestApi {
         super();
     }
 
-    public Group create(GroupDto groupDto) {
-        return post("/groups", groupDto, Group.class).getBody();
+    public Group create(GroupDto groupDto, String cookie) {
+
+        return postWithCookie("/groups", groupDto, Group.class, cookie).getBody();
     }
 
     public List<Group> getTeacherGroups(Long teacherId, String cookie) {

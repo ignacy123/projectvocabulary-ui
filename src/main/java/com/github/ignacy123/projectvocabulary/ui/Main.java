@@ -104,6 +104,7 @@ public class Main extends Application {
         currentGroup = group;
         switchScene("view/GroupInfo.fxml");
     }
+    public void switchToAddGroupScene(){switchScene("view/AddGroup.fxml");}
 
     public Group getCurrentGroup() {
         return currentGroup;
