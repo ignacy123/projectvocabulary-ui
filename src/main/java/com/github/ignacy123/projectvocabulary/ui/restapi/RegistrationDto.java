@@ -1,5 +1,6 @@
 package com.github.ignacy123.projectvocabulary.ui.restapi;
 
+import com.github.ignacy123.projectvocabulary.ui.domain.Role;
 import com.github.ignacy123.projectvocabulary.ui.domain.User;
 
 /**
@@ -14,7 +15,7 @@ public class RegistrationDto {
 
     private String email;
 
-    private User.Type type;
+    private Role role;
 
     public String getFirstName() { return firstName; }
 

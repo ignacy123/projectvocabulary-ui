@@ -14,7 +14,6 @@ public class UserDto {
     private String lastName;
     private String email;
     private String cookie;
-    private User.Type type;
 
     public Long getId() {
         return id;
@@ -56,11 +55,4 @@ public class UserDto {
         this.cookie = cookie;
     }
 
-    public User.Type getType() {
-        return type;
-    }
-
-    public void setType(User.Type type) {
-        this.type = type;
-    }
 }

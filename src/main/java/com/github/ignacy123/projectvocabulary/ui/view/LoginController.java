@@ -45,7 +45,7 @@ public class LoginController extends AbstractBaseController {
             loggingUser.setId(user.getId());
             loggingUser.setEmail(user.getEmail());
             loggingUser.setCookie(user.getCookie());
-            loggingUser.setType(user.getType());
+            loggingUser.setGrantedAuthorities(user.getGrantedAuthorities());
             main.setCurrentUser(loggingUser);
             main.switchToRootScene();
         } catch (RestValidationException e) {

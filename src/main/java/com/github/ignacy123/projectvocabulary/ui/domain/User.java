@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collection;
 import java.util.Formatter;
 import java.util.Objects;
 
@@ -12,9 +13,6 @@ import java.util.Objects;
  */
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
-    public enum Type{
-        STUDENT, TEACHER;
-    }
 
     private Long id;
     private String firstName;
@@ -22,7 +20,16 @@ public class User implements Serializable {
     private String password;
     private String email;
     private String cookie;
-    private Type type;
+    private Collection<GrantedAuthority> authorities;
+
+
+    public Collection<GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Collection<GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
 
     public Long getId() {
         return id;
@@ -48,14 +55,6 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
     }
 
     public String getPassword() {

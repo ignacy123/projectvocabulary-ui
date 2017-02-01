@@ -58,7 +58,7 @@ public class RegistrationController extends AbstractBaseController {
             user.setFirstName(firstNameField.getText());
             user.setLastName(lastNameField.getText());
             if (userTypeGroup.getSelectedToggle() == studentRadio) {
-                user.setType(User.Type.STUDENT);
+                user.setRole(User.Type.STUDENT);
             } else {
                 user.setType(User.Type.TEACHER);
             }
